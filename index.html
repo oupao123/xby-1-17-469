@@ -13,12 +13,12 @@
     <!-- Google Fonts - 金融专业无衬线字体 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
-        // Tailwind 自定义配置 - 西班牙金融主题色+字体
+        // Tailwind 自定义配置 - 西班牙金融主题色+字体 【核心修改：主色调改为WhatsApp绿色】
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#C60C30', // 西班牙国旗红（主色调）
+                        primary: '#059669', // WhatsApp官方深绿 主色调 ✔️
                         secondary: '#F1C40F', // 西班牙金（辅助色）
                         dark: '#0F172A', // 金融深灰蓝
                         darkLight: '#1E293B',
@@ -62,13 +62,13 @@
                 <span class="text-xl font-bold">BolsaES</span>
             </a>
 
-            <!-- 桌面端导航 -->
+            <!-- 桌面端导航 【修改按钮文字：Contactame por WhatsApp】 -->
             <div class="hidden md:flex items-center gap-6">
                 <a href="#mercado" class="text-gray-300 hover:text-secondary transition-colors">Mercado</a>
                 <a href="#top-acciones" class="text-gray-300 hover:text-secondary transition-colors">Top Acciones</a>
                 <a href="#analisis" class="text-gray-300 hover:text-secondary transition-colors">Análisis</a>
                 <a href="#servicios" class="text-gray-300 hover:text-secondary transition-colors">Servicios</a>
-                <a href="#contacto" class="btn-primary">Invertir Ahora</a>
+                <a href="https://wa.me/" target="_blank" class="btn-primary">Contactame por WhatsApp</a>
             </div>
 
             <!-- 移动端菜单按钮 -->
@@ -77,17 +77,17 @@
             </button>
         </nav>
 
-        <!-- 移动端导航菜单 -->
+        <!-- 移动端导航菜单 【修改按钮文字：Contactame por WhatsApp】 -->
         <div id="mobile-menu" class="md:hidden bg-darkLight/95 backdrop-blur-md absolute w-full left-0 top-full py-4 px-4 hidden flex-col gap-4 border-t border-gray-700">
             <a href="#mercado" class="py-2 text-gray-300 hover:text-secondary transition-colors">Mercado</a>
             <a href="#top-acciones" class="py-2 text-gray-300 hover:text-secondary transition-colors">Top Acciones</a>
             <a href="#analisis" class="py-2 text-gray-300 hover:text-secondary transition-colors">Análisis</a>
             <a href="#servicios" class="py-2 text-gray-300 hover:text-secondary transition-colors">Servicios</a>
-            <a href="#contacto" class="btn-primary text-center">Invertir Ahora</a>
+            <a href="https://wa.me/" target="_blank" class="btn-primary text-center">Contactame por WhatsApp</a>
         </div>
     </header>
 
-    <!-- 英雄区 Banner - 核心视觉+主卖点 -->
+    <!-- 英雄区 Banner - 核心视觉+主卖点 【核心修改：绿色按钮+西语文字Contactame por WhatsApp】 -->
     <section class="pt-28 pb-20 px-4 bg-gradient-to-b from-darkLight to-dark relative overflow-hidden">
         <div class="container mx-auto relative z-10">
             <div class="max-w-4xl">
@@ -97,10 +97,9 @@
                 <p class="text-gray-300 text-lg mb-8 max-w-2xl">
                     Accede a cotizaciones en tiempo real de la Bolsa de Madrid, análisis expertos y oportunidades de inversión en el mercado bursátil español líder de Europa.
                 </p>
-                <!-- 核心修改位置：合并两个按钮为一个，文字改为【请联系我的WhatsApp】+ 增加WhatsApp图标 -->
                 <div class="flex justify-center">
                     <a href="https://wa.me/" target="_blank" class="btn-primary text-center flex items-center justify-center gap-2 text-lg w-full sm:w-auto">
-                        <i class="fa-brands fa-whatsapp"></i> 请联系我的WhatsApp
+                        <i class="fa-brands fa-whatsapp"></i> Contactame por WhatsApp
                     </a>
                 </div>
             </div>
@@ -222,7 +221,7 @@
         </div>
     </section>
 
-    <!-- 专业分析+核心优势 -->
+    <!-- 专业分析+核心优势 【修改按钮文字：Contactame por WhatsApp】 -->
     <section id="analisis" class="py-16 px-4 container mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
@@ -246,7 +245,7 @@
                         <span>Análisis macroeconómico del sector ibérico y europeo</span>
                     </li>
                 </ul>
-                <a href="#contacto" class="btn-primary inline-block mt-8">Solicitar Análisis Gratuito</a>
+                <a href="https://wa.me/" target="_blank" class="btn-primary inline-block mt-8">Contactame por WhatsApp</a>
             </div>
             <div class="bg-darkLight rounded-xl p-6 border border-gray-700 stock-card-hover">
                 <h3 class="text-xl font-semibold mb-4">Perspectivas del Mercado 2026</h3>
@@ -394,8 +393,8 @@
                 datasets: [{
                     label: 'IBEX 35',
                     data: [9210.25, 9205.80, 9220.45, 9235.10, 9228.75, 9239.30, 9241.60, 9245.20, 9247.56, 9250.10],
-                    borderColor: '#C60C30',
-                    backgroundColor: 'rgba(198, 12, 48, 0.1)',
+                    borderColor: '#059669', // 走势图线条同步改为绿色 ✔️
+                    backgroundColor: 'rgba(5, 150, 105, 0.1)', // 走势图填充色同步改为绿色浅透 ✔️
                     borderWidth: 2,
                     tension: 0.4,
                     fill: true,

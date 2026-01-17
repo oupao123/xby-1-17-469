@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es-ES" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acciones Españolas | Mercado Bursátil Español & Bolsa de Madrid</title>
+    <meta name="description" content="Accede a cotizaciones en tiempo real de acciones españolas, análisis bursátil profesional, inversión en la Bolsa de Madrid y oportunidades del mercado ibérico.">
+    <meta name="keywords" content="acciones españolas, bolsa de madrid, mercado bursátil español, cotizaciones acciones, inversión bursátil">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts - 金融专业无衬线字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        // Tailwind 自定义配置 - 西班牙金融主题色+字体
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#C60C30', // 西班牙国旗红（主色调）
+                        secondary: '#F1C40F', // 西班牙金（辅助色）
+                        dark: '#0F172A', // 金融深灰蓝
+                        darkLight: '#1E293B',
+                        neutral: '#64748B',
+                        success: '#10B981', // 股票上涨绿
+                        danger: '#EF4444',  // 股票下跌红
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .stock-card-hover {
+                @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02] hover:bg-darkLight/80;
+            }
+            .btn-primary {
+                @apply bg-primary text-white py-3 px-6 rounded-lg font-semibold transition-all hover:bg-primary/90 hover:shadow-md active:scale-95;
+            }
+            .btn-secondary {
+                @apply bg-secondary text-dark py-3 px-6 rounded-lg font-semibold transition-all hover:bg-secondary/90 hover:shadow-md active:scale-95;
+            }
+            .text-gradient {
+                @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-dark text-white antialiased">
+    <!-- 导航栏 - 固定顶部+滚动变色+移动端折叠 -->
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+        <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <i class="fa-solid fa-chart-line text-secondary text-2xl"></i>
+                <span class="text-xl font-bold">BolsaES</span>
+            </a>
+
+            <!-- 桌面端导航 -->
+            <div class="hidden md:flex items-center gap-6">
+                <a href="#mercado" class="text-gray-300 hover:text-secondary transition-colors">Mercado</a>
+                <a href="#top-acciones" class="text-gray-300 hover:text-secondary transition-colors">Top Acciones</a>
+                <a href="#analisis" class="text-gray-300 hover:text-secondary transition-colors">Análisis</a>
+                <a href="#servicios" class="text-gray-300 hover:text-secondary transition-colors">Servicios</a>
+                <a href="#contacto" class="btn-primary">Invertir Ahora</a>
+            </div>
+
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-btn" class="md:hidden text-white text-xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </nav>
+
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden bg-darkLight/95 backdrop-blur-md absolute w-full left-0 top-full py-4 px-4 hidden flex-col gap-4 border-t border-gray-700">
+            <a href="#mercado" class="py-2 text-gray-300 hover:text-secondary transition-colors">Mercado</a>
+            <a href="#top-acciones" class="py-2 text-gray-300 hover:text-secondary transition-colors">Top Acciones</a>
+            <a href="#analisis" class="py-2 text-gray-300 hover:text-secondary transition-colors">Análisis</a>
+            <a href="#servicios" class="py-2 text-gray-300 hover:text-secondary transition-colors">Servicios</a>
+            <a href="#contacto" class="btn-primary text-center">Invertir Ahora</a>
+        </div>
+    </header>
+
+    <!-- 英雄区 Banner - 核心视觉+主卖点 -->
+    <section class="pt-28 pb-20 px-4 bg-gradient-to-b from-darkLight to-dark relative overflow-hidden">
+        <div class="container mx-auto relative z-10">
+            <div class="max-w-4xl">
+                <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight mb-4">
+                    Invertir en <span class="text-gradient">Acciones Españolas</span> con Profesionalidad
+                </h1>
+                <p class="text-gray-300 text-lg mb-8 max-w-2xl">
+                    Accede a cotizaciones en tiempo real de la Bolsa de Madrid, análisis expertos y oportunidades de inversión en el mercado bursátil español líder de Europa.
+                </p>
+                <!-- 核心修改位置：合并两个按钮为一个，文字改为【请联系我的WhatsApp】+ 增加WhatsApp图标 -->
+                <div class="flex justify-center">
+                    <a href="https://wa.me/" target="_blank" class="btn-primary text-center flex items-center justify-center gap-2 text-lg w-full sm:w-auto">
+                        <i class="fa-brands fa-whatsapp"></i> 请联系我的WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- 背景装饰图形 -->
+        <div class="absolute right-0 top-0 w-1/2 h-full opacity-10">
+            <i class="fa-solid fa-coins text-[20rem] text-secondary absolute right-10 top-10"></i>
+        </div>
+    </section>
+
+    <!-- 实时市场概览+股票走势图 -->
+    <section id="mercado" class="py-16 px-4 container mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-3">Mercado Bursátil Español en Tiempo Real</h2>
+            <p class="text-neutral max-w-2xl mx-auto">Indicadores clave de la Bolsa de Madrid (IBEX 35) y tendencias del mercado ibérico</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+            <!-- 市场核心指标卡片 -->
+            <div class="bg-darkLight rounded-xl p-6 stock-card-hover border border-gray-700">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-lg font-semibold text-gray-300">IBEX 35</h3>
+                    <span class="text-success flex items-center gap-1 text-sm font-medium">
+                        <i class="fa-solid fa-arrow-up"></i> 1.24%
+                    </span>
+                </div>
+                <p class="text-3xl font-bold mb-2">9.247,56</p>
+                <p class="text-neutral text-sm">Índice bursátil principal de España</p>
+            </div>
+
+            <div class="bg-darkLight rounded-xl p-6 stock-card-hover border border-gray-700">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-lg font-semibold text-gray-300">Volumen</h3>
+                    <span class="text-gray-300 text-sm font-medium">24h</span>
+                </div>
+                <p class="text-3xl font-bold mb-2">4.216 M€</p>
+                <p class="text-neutral text-sm">Operaciones totales en el mercado</p>
+            </div>
+
+            <div class="bg-darkLight rounded-xl p-6 stock-card-hover border border-gray-700">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-lg font-semibold text-gray-300">Tasa de Interés</h3>
+                    <span class="text-danger flex items-center gap-1 text-sm font-medium">
+                        <i class="fa-solid fa-arrow-down"></i> 0.15%
+                    </span>
+                </div>
+                <p class="text-3xl font-bold mb-2">3,75%</p>
+                <p class="text-neutral text-sm">Banco Central Europeo (BCE)</p>
+            </div>
+        </div>
+
+        <!-- 股票专业走势图 -->
+        <div class="bg-darkLight rounded-xl p-6 border border-gray-700">
+            <h3 class="text-xl font-semibold mb-4">Gráfico de Cotización IBEX 35 (Últimas 24h)</h3>
+            <div class="w-full h-[300px] flex items-center justify-center relative">
+                <canvas id="stockChart" class="w-full h-full"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- 西班牙热门股票排行 核心板块 -->
+    <section id="top-acciones" class="py-16 px-4 bg-darkLight/50">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-3">Top Acciones Españolas 2026</h2>
+                <p class="text-neutral max-w-2xl mx-auto">Las empresas líderes de España con mayor rendimiento en la Bolsa de Madrid</p>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full rounded-xl overflow-hidden border border-gray-700">
+                    <thead>
+                        <tr class="bg-dark text-left">
+                            <th class="py-4 px-6 text-gray-300 font-semibold">EMPRESA</th>
+                            <th class="py-4 px-6 text-gray-300 font-semibold">SÍMBOLO</th>
+                            <th class="py-4 px-6 text-gray-300 font-semibold text-right">PRECIO (€)</th>
+                            <th class="py-4 px-6 text-gray-300 font-semibold text-right">VAR. 24h</th>
+                            <th class="py-4 px-6 text-gray-300 font-semibold text-right">CAP. BURSÁTIL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-t border-gray-700 hover:bg-dark/50 transition-colors">
+                            <td class="py-4 px-6"><span class="font-medium">Inditex</span> <span class="text-neutral text-sm">(Moda)</span></td>
+                            <td class="py-4 px-6 font-mono">ITX.MC</td>
+                            <td class="py-4 px-6 text-right font-semibold">32,87</td>
+                            <td class="py-4 px-6 text-right text-success font-medium">+2.17%</td>
+                            <td class="py-4 px-6 text-right">102,5 M€</td>
+                        </tr>
+                        <tr class="border-t border-gray-700 hover:bg-dark/50 transition-colors">
+                            <td class="py-4 px-6"><span class="font-medium">Santander</span> <span class="text-neutral text-sm">(Banca)</span></td>
+                            <td class="py-4 px-6 font-mono">SAN.MC</td>
+                            <td class="py-4 px-6 text-right font-semibold">3,56</td>
+                            <td class="py-4 px-6 text-right text-success font-medium">+1.89%</td>
+                            <td class="py-4 px-6 text-right">68,2 M€</td>
+                        </tr>
+                        <tr class="border-t border-gray-700 hover:bg-dark/50 transition-colors">
+                            <td class="py-4 px-6"><span class="font-medium">BBVA</span> <span class="text-neutral text-sm">(Banca)</span></td>
+                            <td class="py-4 px-6 font-mono">BBVA.MC</td>
+                            <td class="py-4 px-6 text-right font-semibold">5,12</td>
+                            <td class="py-4 px-6 text-right text-success font-medium">+0.94%</td>
+                            <td class="py-4 px-6 text-right">45,7 M€</td>
+                        </tr>
+                        <tr class="border-t border-gray-700 hover:bg-dark/50 transition-colors">
+                            <td class="py-4 px-6"><span class="font-medium">Repsol</span> <span class="text-neutral text-sm">(Energía)</span></td>
+                            <td class="py-4 px-6 font-mono">REP.MC</td>
+                            <td class="py-4 px-6 text-right font-semibold">12,45</td>
+                            <td class="py-4 px-6 text-right text-danger font-medium">-0.52%</td>
+                            <td class="py-4 px-6 text-right">28,3 M€</td>
+                        </tr>
+                        <tr class="border-t border-gray-700 hover:bg-dark/50 transition-colors">
+                            <td class="py-4 px-6"><span class="font-medium">Iberdrola</span> <span class="text-neutral text-sm">(Energía)</span></td>
+                            <td class="py-4 px-6 font-mono">IBE.MC</td>
+                            <td class="py-4 px-6 text-right font-semibold">9,78</td>
+                            <td class="py-4 px-6 text-right text-success font-medium">+1.05%</td>
+                            <td class="py-4 px-6 text-right">52,9 M€</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 专业分析+核心优势 -->
+    <section id="analisis" class="py-16 px-4 container mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div>
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-4">Análisis Profesional del Mercado Español</h2>
+                <p class="text-neutral text-lg mb-6">Nuestro equipo de expertos bursátiles analiza diariamente el mercado español para identificar tendencias, oportunidades y riesgos de inversión.</p>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check-circle text-secondary mt-1"></i>
+                        <span>Predicciones de tendencias del IBEX 35 con precisión del 82%</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check-circle text-secondary mt-1"></i>
+                        <span>Informes detallados de empresas españolas líderes</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check-circle text-secondary mt-1"></i>
+                        <span>Alertas de compra/venta en tiempo real para acciones seleccionadas</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-check-circle text-secondary mt-1"></i>
+                        <span>Análisis macroeconómico del sector ibérico y europeo</span>
+                    </li>
+                </ul>
+                <a href="#contacto" class="btn-primary inline-block mt-8">Solicitar Análisis Gratuito</a>
+            </div>
+            <div class="bg-darkLight rounded-xl p-6 border border-gray-700 stock-card-hover">
+                <h3 class="text-xl font-semibold mb-4">Perspectivas del Mercado 2026</h3>
+                <p class="text-gray-300 mb-4">El mercado español muestra una tendencia alcista sostenida, impulsado por la recuperación económica post-pandemia y las reformas regulatorias.</p>
+                <div class="space-y-3">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm text-gray-400">Sector Banca</span>
+                        <span class="text-sm text-success">+12.5% (Año)</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                        <div class="bg-success h-2 rounded-full" style="width: 78%"></div>
+                    </div>
+
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm text-gray-400">Sector Energía</span>
+                        <span class="text-sm text-danger">-3.2% (Año)</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                        <div class="bg-danger h-2 rounded-full" style="width: 35%"></div>
+                    </div>
+
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm text-gray-400">Sector Tecnología</span>
+                        <span class="text-sm text-success">+18.7% (Año)</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                        <div class="bg-success h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm text-gray-400">Sector Moda</span>
+                        <span class="text-sm text-success">+9.4% (Año)</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-2">
+                        <div class="bg-success h-2 rounded-full" style="width: 72%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 金融服务板块 -->
+    <section id="servicios" class="py-16 px-4 bg-darkLight/50">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold mb-3">Nuestros Servicios de Inversión</h2>
+                <p class="text-neutral max-w-2xl mx-auto">Soluciones completas para invertir en el mercado español con seguridad y rentabilidad</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-dark rounded-xl p-6 border border-gray-700 stock-card-hover">
+                    <i class="fa-solid fa-chart-pie text-secondary text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Gestión de Cartera</h3>
+                    <p class="text-neutral">Portafolios personalizados de acciones españolas, adaptados a tu perfil de riesgo y objetivos de inversión.</p>
+                </div>
+                <div class="bg-dark rounded-xl p-6 border border-gray-700 stock-card-hover">
+                    <i class="fa-solid fa-newspaper text-secondary text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Informes Expertos</h3>
+                    <p class="text-neutral">Análisis profundos de empresas, sectores y tendencias del mercado español, con recomendaciones de compra/venta.</p>
+                </div>
+                <div class="bg-dark rounded-xl p-6 border border-gray-700 stock-card-hover">
+                    <i class="fa-solid fa-shield-halved text-secondary text-3xl mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Asesoramiento Personalizado</h3>
+                    <p class="text-neutral">Asesoramiento bursátil individualizado por expertos con más de 15 años de experiencia en la Bolsa de Madrid.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部联系+风险提示 -->
+    <footer id="contacto" class="py-12 px-4 bg-dark border-t border-gray-700">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="#" class="flex items-center gap-2 mb-4">
+                        <i class="fa-solid fa-chart-line text-secondary text-2xl"></i>
+                        <span class="text-xl font-bold">BolsaES</span>
+                    </a>
+                    <p class="text-neutral">Tu plataforma de confianza para invertir en acciones españolas y acceder al mercado de la Bolsa de Madrid.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Enlaces Rápidos</h4>
+                    <ul class="space-y-2 text-neutral">
+                        <li><a href="#mercado" class="hover:text-secondary transition-colors">Mercado</a></li>
+                        <li><a href="#top-acciones" class="hover:text-secondary transition-colors">Top Acciones</a></li>
+                        <li><a href="#analisis" class="hover:text-secondary transition-colors">Análisis</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contacto</h4>
+                    <ul class="space-y-2 text-neutral">
+                        <li><i class="fa-solid fa-map-marker-alt mr-2"></i> Madrid, España</li>
+                        <li><i class="fa-solid fa-phone mr-2"></i> +34 91 123 45 67</li>
+                        <li><i class="fa-solid fa-envelope mr-2"></i> info@bolsaes.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Síguenos</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-neutral hover:text-secondary text-xl transition-colors"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="text-neutral hover:text-secondary text-xl transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="text-neutral hover:text-secondary text-xl transition-colors"><i class="fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- 金融合规风险提示 必备 -->
+            <div class="pt-8 border-t border-gray-700 text-center text-neutral text-sm">
+                <p>⚠️ AVISO DE RIESGO: La inversión en acciones implica riesgos, incluyendo la pérdida de capital. Los datos mostrados son informativos y no constituyen asesoramiento financiero.</p>
+                <p class="mt-2">© 2026 BolsaES - Todos los derechos reservados. Regulado por la CNMV (Comisión Nacional del Mercado de Valores).</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS 依赖+核心功能 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <script>
+        // 导航栏滚动变色
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-dark/95', 'backdrop-blur-md', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('bg-dark/95', 'backdrop-blur-md', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+
+        // 股票走势图生成 - Chart.js 专业配置
+        const ctx = document.getElementById('stockChart').getContext('2d');
+        const stockChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
+                datasets: [{
+                    label: 'IBEX 35',
+                    data: [9210.25, 9205.80, 9220.45, 9235.10, 9228.75, 9239.30, 9241.60, 9245.20, 9247.56, 9250.10],
+                    borderColor: '#C60C30',
+                    backgroundColor: 'rgba(198, 12, 48, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true,
+                    pointRadius: 0,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: '#1E293B',
+                        borderColor: '#64748B',
+                        borderWidth: 1,
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false, color: '#334155' },
+                        ticks: { color: '#94A3B8' }
+                    },
+                    y: {
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94A3B8' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
